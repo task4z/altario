@@ -26,8 +26,7 @@ export class GeneratorService {
     if (this.subscription){
       this.subscription.unsubscribe();
     }
-    // this.subscription = timer(0, interval).subscribe(() => this.dataSource$.next(this.generateState()));
-    this.dataSource$.next(this.generateState());
+    this.subscription = timer(0, interval).subscribe(() => this.dataSource$.next(this.generateState()));
   }
 
   public get char(): string{
