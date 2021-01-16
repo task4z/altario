@@ -1,0 +1,65 @@
+
+<app-live-code></app-live-code>
+<div class="container my-3">
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <div class="row" *ngIf="!state.live">
+            <div class="col-12">
+                <small class="text-danger">You need to generate a code before adding a payment</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="description" 
+                [ngClass]="{'text-danger': !this.paymentForm.controls['description'].valid && this.paymentForm.controls['description']?.touched}">
+                PAYMENT</label>
+            </div>
+            <div class="col-4">
+                <label for="amount"
+                [ngClass]="{'text-danger': !this.paymentForm.controls['amount'].valid && this.paymentForm.controls['amount']?.touched}"
+                >AMOUNT</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <input class="form-control form-control-sm" 
+                [ngClass]="{'is-invalid': !this.paymentForm.controls['description'].valid && this.paymentForm.controls['description']?.touched}"
+                type="text" formControlName="description" id="description" placeholder="PAYMENT" />
+            </div>
+            <div class="col-4">
+                <input class="form-control form-control-sm" 
+                    [ngClass]="{'is-invalid': !this.paymentForm.controls['amount'].valid && this.paymentForm.controls['amount']?.touched}"
+                    type="number" formControlName="amount" id="amount" placeholder="AMOUNT" />
+            </div>
+            <div class="col-4">
+                <button class="btn btn-primary btn-sm" type="submit" [disabled]="!this.state.live || this.paymentForm.invalid || !state?.live"><strong>+ ADD</strong></button>
+            </div>
+        </div>
+    </form>
+    <div class="row my-3">
+        <div class="col-12">
+            <span>PAYMENT LIST</span>
+        </div>
+    </div>
+    <div class="container-fluid border rounded">
+        <div class="row">
+            <div class="col-3 col-md-6 border py-2">NAME</div>
+            <div class="col-3 col-md-2 border py-2 text-center px-0">AMOUNT</div>
+            <div class="col-3 col-md-2 border py-2 text-center px-0">CODE</div>
+            <div class="col-3 col-md-2 border py-2 text-center px-0">GRID</div>
+        </div>
+        <div class="row" *ngFor="let payment of payments">
+            <div class="col-3 col-md-6 border py-2 text-overflow" [title]="payment?.name ? payment?.name : ''">
+                <strong>{{payment?.name ? payment?.name : '&nbsp;'}}</strong>
+            </div>
+            <div class="col-3 col-md-2 border py-2 text-center text-overflow" [title]="payment?.amount ? payment?.amount : ''">
+                <strong>{{payment?.amount ? payment?.amount : '&nbsp;'}}</strong>
+            </div>
+            <div class="col-3 col-md-2 border py-2 text-center text-overflow" [title]="payment?.code ? payment?.code : ''">
+                <strong>{{payment?.code ? payment?.code : '&nbsp;'}}</strong>
+            </div>
+            <div class="col-3 col-md-2 border py-2 text-center text-overflow" [title]="payment?.elementsToCheck ? payment?.elementsToCheck : ''">
+                <strong>{{payment?.elementsToCheck ? payment?.elementsToCheck : '&nbsp;'}}</strong>
+            </div>
+        </div>
+    </div>
+</div>

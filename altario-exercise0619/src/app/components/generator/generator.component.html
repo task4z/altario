@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="d-flex row align-items-center text-center">
+        <div class="col-12 col-md-4">
+          <div class="row">
+              <div class="col text-left">
+                  <label for="character">CHARACTER</label>
+              </div>
+          </div>
+            <div class="row">
+              <div class="col">
+                  <input 
+                    id="character"
+                    type="text" 
+                    [formControl]="character"
+                    placeholder="Character" 
+                    class="form-control form-control-sm" 
+                    (keypress)="keyPressAlphaNumeric($event)"
+                    (keyup.enter)="enterPressed()"/> 
+              </div>
+          </div>
+        </div>
+      <div class="col-12 col-md-4">
+        <img class="py-3" src="assets/clock.png" alt="clock symbol"/>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-primary" type="button" (click)="enterPressed()" [disabled]="character.disabled">GENERATE 2D GRID</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mx-auto mt-3" *ngIf="state.grid.length">
+    <div class="col border rounded">
+      <div class="row" *ngFor="let line of state.grid">
+        <div class="text-center py-2 border" [ngStyle]="{'width':cssWidthClass()}" *ngFor="let cell of line">
+          <span>{{cell}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-live-code></app-live-code>
