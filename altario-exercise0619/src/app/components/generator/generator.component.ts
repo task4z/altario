@@ -40,7 +40,7 @@ export class GeneratorComponent implements OnInit, OnDestroy{
   }
 
   public enterPressed(): void{
-    if (this.character.value !== this.generatorService.char){
+    if (this.character.value !== this.generatorService.char && this.character.value){
       this.generatorService.char = this.character.value;
       this.generatorService.disable();
     }
@@ -64,7 +64,6 @@ export class GeneratorComponent implements OnInit, OnDestroy{
   }
 
   private getDisabled(): void {
-    this.character.disable();
     this.generatorService.isDisabled$.pipe(takeUntil(this.onDestroy$)).subscribe((disabled) => {
       if (disabled){
         return this.character.disable();
