@@ -1,0 +1,8 @@
+.dot{
+    width: 0.3125em;
+    height: 0.3125em;
+    background: red;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-bottom: 0.1875em;
+}

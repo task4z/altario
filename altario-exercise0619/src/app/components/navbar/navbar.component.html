@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/generator">
+    <img class="logo-light" style="height: 30px" src="https://s3-eu-west-1.amazonaws.com/altario-wordpressmedia/wp-content/uploads/2020/04/09125957/altar__full-logo-dark.svg" alt="Altar.io">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [class.active]="isGenerator()">
+        <a class="nav-link" routerLink="/generator">Generator</a></li>
+      <li class="nav-item" [class.active]="!isGenerator()">
+        <a class="nav-link" routerLink="/payments">Payments</a></li>
+    </ul>
+  </div>
+</nav>
